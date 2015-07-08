@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  avatar_100: MyString
+  avatar_80: MyString
+  avatar_60: MyString
+  avatar_40: MyString
+  avatar_20: MyString
+
+two:
+  avatar_100: MyString
+  avatar_80: MyString
+  avatar_60: MyString
+  avatar_40: MyString
+  avatar_20: MyString

@@ -1,0 +1,131 @@
+<% provide(:collected_inventions, "active") %>
+<% provide(:title, "Collected Inventions") %>
+
+<div class="container bot-padding">
+  <div role="tabpanel">
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#microscopes" aria-controls="microscopes" role="tab" data-toggle="tab" class="text-primary">Microscopes</a>
+      </li>
+      <li role="presentation">
+        <a href="#foodchain" aria-controls="foodchain" role="tab" data-toggle="tab" class="text-primary">Food Chain</a>
+      </li>
+      <li role="presentation">
+        <a href="#magnets" aria-controls="magnets" role="tab" data-toggle="tab" class="text-primary">Magnets</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Tab 1 : Microscopes -->
+      <div class="tab-pane active" id="microscopes">
+        <div class="row cat-content">
+          <% @microscopes_inventions.each do |micro| %>
+            <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag(micro.full_image) %>
+              </a>
+            </div>
+          <% end %>
+          <!-- <div class="col-xs-6 col-md-3 col-lg-3">
+            <a href="#" class="thumbnail">
+              <%= image_tag('Microscope.gif') %>
+            </a>
+          </div> -->
+          <div class="col-xs-6 col-md-3 col-lg-3">
+            <a href="#" class="thumbnail">
+              <%= image_tag placeholder_image(263, 222) %>
+            </a>
+          </div>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 222) %>
+              </a>
+          </div>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 222) %>
+              </a>
+          </div> 
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 222) %>
+              </a>
+          </div> 
+        </div>
+      </div>    
+      <!-- Tab 2 : Food Chain -->
+      <div class="tab-pane" id="foodchain">
+        <div class="row cat-content">
+          <% @food_chain_inventions.each do |mag| %>
+            <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag(mag.full_image) %>
+              </a>
+            </div>
+          <% end %>
+           <div class="col-xs-6 col-md-3 col-lg-3">
+            <a href="#" class="thumbnail">
+              <%= image_tag placeholder_image(263, 436) %>
+            </a>
+          </div>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 436) %>
+              </a>
+          </div>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 436) %>
+              </a>
+          </div>
+          <!--<div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 436) %>
+              </a>
+          </div> -->
+        </div>                              
+      </div>
+      <!-- Tab 3 : Magnets -->
+      <div class="tab-pane" id="magnets">
+        <div class="row cat-content">
+          <% @magnets_inventions.each do |food| %>
+            <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag(food.full_image) %>
+              </a>
+            </div>
+          <% end %>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+            <a href="#" class="thumbnail">
+              <%= image_tag placeholder_image(263, 222) %>
+            </a>
+          </div>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 222) %>
+              </a>
+          </div>
+          <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 222) %>
+              </a>
+          </div>
+          <!-- <div class="col-xs-6 col-md-3 col-lg-3">
+              <a href="#" class="thumbnail">
+                <%= image_tag placeholder_image(263, 436) %>
+              </a>
+          </div> -->
+        </div>                                
+      </div>      
+    </div>
+  </div>
+</div>     
+
+<script>
+  $(function{
+    $('#myTab a').click(function(e) {
+      e.preventDefault();
+      $(this).tab('show');
+    });
+  });
+</script>

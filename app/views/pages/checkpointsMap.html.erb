@@ -1,0 +1,32 @@
+<% provide(:title, "Checkpoints Map") %>
+
+<div class="container">
+  <div class="row">
+    <%= image_tag('checkpointMap.png', class: 'checkpoint-map') %>
+
+    <% @checkpoints.each do |checkpoint| %>
+    <%= link_to "", "#", html_options = {:id => Continent.find(checkpoint.continent_id).name, :onclick => "popup('popUpDiv#{checkpoint.id}')"} %>
+
+    <!-- Popup Divs for each checkpoint -->
+    <div id="blanket" style="display:none;"></div>
+    <%= content_tag "div", id: "popUpDiv#{checkpoint.id}", class: "city-popup-div", style: "display:none;" do %>
+      <%= link_to "#", html_options = {:onclick => "popup('popUpDiv#{checkpoint.id}')"} do %>
+        <span id="close-popup" class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="padding-top:5px; padding-right:25px;"></span>
+      <% end %> <!-- End of link_to tag -->
+      <div class="choose-city">
+        <h3 class="text-center clues-text">
+          Choose a city:
+        </h3>
+        <hr>
+        <div class="list-group">
+          <% @continent = Continent.find(checkpoint.continent_id)
+            @cities = @continent.cities 
+            @cities.each do |city| %>
+          <%= link_to city.name, "/home/checkpointsMap/play/#{@game.id}/#{checkpoint.id}/#{city.id}", html_options = {:class => "list-group-item"} %>
+          <% end %> <!-- End of @cities loop play_path(checkpoint) -->
+        </div>
+      </div>
+      <% end %> <!-- End of @checkpoints loop -->
+    <% end %> <!-- End of div content_tag -->
+  </div>
+</div>

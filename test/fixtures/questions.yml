@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lesson_id: 
+  content: MyString
+  choice_A: MyString
+  choice_B: MyString
+  choice_C: MyString
+  choice_D: MyString
+  correct_choice: MyString
+  eliminated_choices: MyString
+  explaination: MyString
+
+two:
+  lesson_id: 
+  content: MyString
+  choice_A: MyString
+  choice_B: MyString
+  choice_C: MyString
+  choice_D: MyString
+  correct_choice: MyString
+  eliminated_choices: MyString
+  explaination: MyString

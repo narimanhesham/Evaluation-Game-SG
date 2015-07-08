@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city_id: 
+  location_hint_id: 
+  image: MyString
+  question: MyString
+  choice_A: MyString
+  choice_B: MyString
+  choice_C: MyString
+  choice_D: MyString
+  correct_choice: MyString
+
+two:
+  city_id: 
+  location_hint_id: 
+  image: MyString
+  question: MyString
+  choice_A: MyString
+  choice_B: MyString
+  choice_C: MyString
+  choice_D: MyString
+  correct_choice: MyString

@@ -1,0 +1,13 @@
+<% provide(:title, "Invention Information") %>
+
+<div class="container bot-padding">
+  <div class"row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h2 class="text-primary inv-title bot-padding"><u><%= @game_invention.name %></u></h2>
+      <p class="inv-img bot-padding"><%= image_tag(@game_invention.full_image, class: "thumbnail" )%></p>
+      <p class="text-primary text-center bot-padding"> 
+        <%= @game_invention.information %>
+      </p>
+    </div>
+  </div>
+</div>

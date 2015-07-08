@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checkpoint_id: 
+  name: MyString
+  latitude: 
+  longitude: 
+  continent: MyString
+
+two:
+  checkpoint_id: 
+  name: MyString
+  latitude: 
+  longitude: 
+  continent: MyString

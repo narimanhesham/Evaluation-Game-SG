@@ -1,0 +1,148 @@
+<% provide(:title, "Play a Game") %>
+<%= include_gon(:init => true) %>
+
+<div class="container-fluid">
+<!-- Checkpoint Title -->
+  <div class= "row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="text-center" style="color: #FFFFFF; padding-bottom: 15px;">
+        <h3>Checkpoint -<%= @checkpoint.educational_level_id %>-</h3>
+      </div>
+    </div>
+  </div>
+  <!-- end -->
+  <!-- Score, Questions Progress Bar, Challenge me Button -->
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <p class="pull-left text-center score"> 
+        Total Score: <%= image_tag('coins.png') %> 
+        <span id="playerScore">
+          <%= @game.score %>
+          <% @game.save %>
+        </span>
+      </p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="progress checkpoint-bar">
+        <div id="playerProgress" class="progress-bar-default" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="70" style="width: 0%;">
+          0%
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <a class="btn btn-info pull-right" href="#"  onclick="popup('popUpDiv')">
+        <%= image_tag('coins.png') %>
+        Challenge Me
+      </a>
+    </div>
+  </div>  
+  <!-- end -->
+
+  <!-- Map Container -->
+  <div class= "row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div id="map-container">
+        <div id="pano"></div>
+      </div>
+    </div>
+  </div> 
+  <!-- end -->
+
+  <!-- Challenge Question PopUp -->
+  <div id="blanket" style="display:none;"></div>
+  <div id="popUpDiv" style="display:none;">
+    <a id="close-popup" onclick="popup('popUpDiv')">
+      <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="padding-top:5px; padding-right:25px;"></span>
+    </a>
+    <div class="challenge-question">
+      <h3 class="text-center clues-text">
+        Challenge Question
+      </h3>
+      <hr>
+      <p style="font-size: 1.1em;">
+        <b>Q: Oxygen gas represents ..... of the volume of the atmosphere.</b>
+      </p>
+      <table class="table choices-table">
+        <tr>
+          <td>
+            <a class="choice" href="#">A: 50%</a>
+          </td>
+          <td>
+            <a class="choice" onclick="challengeQuestion()">B: 0.03%</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a class="choice" href="#">C: 21%</a>
+          </td>
+          <td>
+            <a class="choice" href="#">D: 78%</a>
+          </td>          
+        </tr>
+      </table>
+      <div class="pull-right challenge-question-points" style="padding-bottom:15px;">
+        <%= image_tag('right-coins.png') %>
+        <b style="color:#3DC53F;">+40&nbsp</b>
+        <%= image_tag('wrong-coins.png') %>
+        <b style="color:red;">-20&nbsp</b>
+      </div>
+    </div>
+  </div> 
+  <!-- end -->
+
+  <a href="#" onclick="popup('checkpointCompleted')" ></a>
+  <div id="blanket" style="display:none;"></div>
+  <div id="checkpointCompleted" style="display:none;" class="city-popup-div">
+    <a id="close-popup" onclick="popup('checkpointCompleted')">
+      <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="padding-top:5px; padding-right:5px;"></span>
+    </a>
+    <div>
+      <h3 class="congrats-text">Congratulations</h3>
+      <hr>
+      <p class="part-image">
+        <%= image_tag(@part) %>
+      </p>
+      <p class="checkpoint-completed-text">
+        You've found part <%= @checkpoint.educational_level_id %> from an Invention <br>
+        <%= Continent.find(@checkpoint.continent_id).name %> 
+        Checkpoint Completed
+      </p>
+      <br>
+      <div class="checkpoint-completed-div">
+        <% if(@checkpoint.id == 6) %>
+        <%= link_to "Continue", "/treasureHunties/#{@game.id}", html_options = {:class => "btn btn-info pull-right"} %>
+        <% else %>
+        <%= link_to "Continue", "/home/checkpointsMap/#{@game.id}", html_options = {:class => "btn btn-info pull-right"} %>
+        <% end %>
+        <a class="btn btn-info pull-left" href="#">
+          Bonus Question
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="blanket" style="display:none;"></div>
+  <div id="wrongQuestion" style="display:none;" class="city-popup-div">
+    <div>
+      <h2 class="wrong-answer-text">Opps!!</h2>
+      <hr>
+      <p class="part-image">
+        <%= image_tag("sad smurf.png") %>
+      </p>
+      <p style="text-align:center;font-size: large;">
+        Your Answer is incorrect <br>
+        But you are given another chance by moving to the beginning of the Checkpoint
+      </p>
+    </div>
+    <div style="text-align:center;padding-bottom:20px;">
+      <a href="" class="btn btn-info">Continue</a>
+    </div>
+  </div>
+
+  <div id="position_cell">
+  </div>
+
+<% content_for :gmap do %>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize' %>
+<% end %>

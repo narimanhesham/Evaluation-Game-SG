@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 
+  city_id: 
+  correct_questions: 1
+  score: 1
+  mode: MyString
+  invention_id: 
+
+two:
+  player_id: 
+  city_id: 
+  correct_questions: 1
+  score: 1
+  mode: MyString
+  invention_id: 

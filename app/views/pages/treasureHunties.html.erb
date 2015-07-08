@@ -1,0 +1,131 @@
+<% provide(:treasure_hunties, "active") %>
+<% provide(:title, "Treasure Hunties") %>
+<%= include_gon(:init => true) %>
+
+<div class="container treasure-tilte">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h2 style="padding-left: 15px;">Collected Treasure from Checkpoints</h2>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div id="columns" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="column" draggable="true" id="col1">
+        <%= image_tag(@game_invention.part4, id: "part4", alt: "Part 4") %>
+      </div>
+      <div class="column" draggable="true" id="col2">
+        <%= image_tag(@game_invention.part6, id: "part6", alt: "Part 6") %>
+      </div>
+      <div class="column" draggable="true" id="col3">
+        <%= image_tag(@game_invention.part1, id: "part1", alt: "Part 1") %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div id="columns" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+      <div class="column" draggable="true" id="col4">
+        <%= image_tag(@game_invention.part5, id: "part5", alt: "Part 5") %>
+      </div>
+      <div class="column" draggable="true" id="col5">
+        <%= image_tag(@game_invention.part2, id: "part2", alt: "Part 2") %>
+      </div>
+      <div class="column" draggable="true" id="col6">
+        <%= image_tag(@game_invention.part3, id: "part3", alt: "Part 3") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function handleDragOver(e) {
+    if (e.preventDefault) {
+      e.preventDefault(); 
+    }
+
+    e.dataTransfer.dropEffect = 'move'; 
+    
+    return false;
+  }
+
+  function handleDragEnter(e) {
+    this.classList.add('over');
+  }
+
+  function handleDragLeave(e) {
+    this.classList.remove('over'); 
+  }
+
+  function handleDrop(e) {
+    if (e.stopPropagation) {
+      e.stopPropagation(); 
+    }
+
+    if (dragSrcEl != this) {
+      dragSrcEl.innerHTML = this.innerHTML;
+      this.innerHTML = e.dataTransfer.getData('text/html');
+    }
+
+    var col1 = $('#col1').children('#part1');
+    var col2 = $('#col2').children('#part2');
+    var col3 = $('#col3').children('#part3');
+    var col4 = $('#col4').children('#part4');
+    var col5 = $('#col5').children('#part5');
+    var col6 = $('#col6').children('#part6');
+    console.log("col1: " + $(col1[0]).attr('alt'));
+    console.log("col2: " + $(col2[0]).attr('alt'));
+    console.log("col3: " + $(col3[0]).attr('alt'));
+    console.log("col4: " + $(col4[0]).attr('alt'));
+    console.log("col5: " + $(col5[0]).attr('alt'));
+    console.log("col6: " + $(col6[0]).attr('alt'));
+
+    col1Value = $(col1[0]).attr('alt');
+    col2Value = $(col2[0]).attr('alt');
+    col3Value = $(col3[0]).attr('alt');
+    col4Value = $(col4[0]).attr('alt');
+    col5Value = $(col5[0]).attr('alt');
+    col6Value = $(col6[0]).attr('alt');
+
+    console.log("==========" + gon.game.id);
+
+    if(col1Value == "Part 1" && col2Value == "Part 2" && col3Value == "Part 3" && col4Value == "Part 4" && col5Value == "Part 5" && col6Value == "Part 6") {
+      var delay = 2000;
+      setTimeout(function(){
+        window.location.href = "/treasureHunties/" + gon.game.id + "/information";
+      },delay);
+      
+      console.log("True");
+    }
+    else {
+      console.log("False");
+    }
+
+    return false;
+  }
+
+  function handleDragEnd(e) {
+    [].forEach.call(cols, function (col) {
+      col.classList.remove('over');
+    });
+  }
+
+  var dragSrcEl = null;
+
+  function handleDragStart(e) {
+    dragSrcEl = this;
+
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+  }
+  
+  var cols = document.querySelectorAll('#columns .column');
+  [].forEach.call(cols, function(col) {
+    col.addEventListener('dragstart', handleDragStart, false);
+    col.addEventListener('dragenter', handleDragEnter, false);
+    col.addEventListener('dragover', handleDragOver, false);
+    col.addEventListener('dragleave', handleDragLeave, false);
+    col.addEventListener('drop', handleDrop, false);
+    col.addEventListener('dragend', handleDragEnd, false);
+  });
+</script>

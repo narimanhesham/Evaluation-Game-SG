@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %> | SG</title>
+  <%= include_gon(:init => true) %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body>
+  <div id="wrap">
+    <%= render 'shared/navbar' %>
+    <div class="main-page-content <%= controller.controller_name %>" id="main">
+      <%= yield %>
+    </div>
+    <div id="push"></div>
+  </div>
+  <%= render 'shared/footer' %>
+  <%= yield :gmap %>
+</body>
+</html>

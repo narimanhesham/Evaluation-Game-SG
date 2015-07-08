@@ -1,0 +1,79 @@
+<% provide(:home, "active") %>
+<% provide(:title, "Home") %>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Welcome to, Science Mania </h1>
+    <p><%= lorem_ipsum(300) %></p>
+    <p><a class="btn btn-info btn-lg" href="#" role="button">Take a Tour</a></p>
+  </div>
+</div>
+
+<div class="container bot-padding">
+  <div class="well checkbox-well">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+        <h1>Select Content of the Game</h1>
+      </div>
+    </div>
+    <br>
+    <%= form_for :game, :url => {:controller => "pages", :action => "checkpointsMap"}  do |game| %>
+      <div class="row checkbox">
+        <% @units.each do |unit| 
+          @lessons = unit.lessons
+          @lessons.each do |lesson| %>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <%= check_box_tag "game[lesson_ids][]", lesson.id %>
+            <label>
+              Unit(<%= unit.number %>-<%= lesson.number %>): <%= lesson.name %>
+            </label>
+          </div>
+        <% end %>
+        <% end %>
+        <!-- end of checkboxes -->
+      </div> <!-- end of checkboxes row --> 
+      <br>
+      <br>
+      <%= hidden_field_tag 'mode', '', :id => "gameMode" %> 
+      <div class="row">      
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="well text-center newgame-well">
+            <%= image_tag('User.png') %>
+            <h2>Zen Mode</h2>
+            <p>Play without any restrictions on time</p>
+            <p>
+              <input class="btn btn-info" type="submit" value="New Game" onclick="setMode('Zen')">
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="well text-center newgame-well">
+            <%= image_tag('Clock.png') %>
+            <h2>Time Limit Mode</h2>
+            <p>Play with restrictions on time</p>
+            <p>
+              <input class="btn btn-info" href="#" type="submit" value="New Game" onclick="setMode('Time Limit')">
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="well text-center newgame-well">
+            <%= image_tag('multiUsers.png') %>
+            <h2>Racing Mode</h2>
+            <p>Challenge a friend or another player</p>
+            <p>
+              <input class="btn btn-info" href="#" type="submit" value="New Game"  onclick="setMode('Racing')">
+            </p>
+          </div>
+        </div>        
+      </div>
+    <% end %>
+  </div> <!-- end of well -->
+</div> <!-- end of container -->
+
+</div>
+<script type="text/javascript">
+  function setMode(mode){
+    document.getElementById('gameMode').value = mode;
+  }
+</script>

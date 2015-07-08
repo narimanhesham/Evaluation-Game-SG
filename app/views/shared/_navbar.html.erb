@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand brand-img" href="/">
+        <%= image_tag('SG2.png', alt: "Brand", class: "nav-image") %>
+      </a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Science Mania</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% if player_signed_in? %>
+          <li class="<%= yield(:home) %>"><%= link_to "Home", root_path %></li>
+          <li class="<%= yield(:profile) %>"><%= link_to "Profile", profile_path %></li>
+          
+          <li class="<%= yield(:collected_inventions) %>"><%= link_to "Collected Inventions", collectedInventions_path %></li>
+          <li class="<%= yield(:top_players) %>"><%= link_to "Top Players", topPlayers_path %></li>
+          <li class="<%= yield(:help) %>"><%= link_to "Help", help_path %></li>
+          <li class="<%= yield(:sign_out) %>"><%= link_to "Sign out", destroy_player_session_path %></li>
+        <% else %>
+          <li class="<%= yield(:sign_up) %>"><%= link_to "Register", new_player_registration_path %></li>
+          <li class="<%= yield(:sign_in) %>"><%= link_to "Sign in", new_player_session_path %></li>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
