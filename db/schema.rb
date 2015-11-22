@@ -53,11 +53,11 @@ ActiveRecord::Schema.define(version: 20150530124006) do
 
   create_table "cities", force: :cascade do |t|
     t.integer  "checkpoint_id", limit: 4
-    t.string   "name",          limit: 255, default: ""
+    t.string   "name",          limit: 255
     t.string   "latitude",      limit: 255
     t.string   "longitude",     limit: 255
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "continent_id",  limit: 4
   end
 
@@ -167,7 +167,6 @@ ActiveRecord::Schema.define(version: 20150530124006) do
     t.integer  "avatar_id",              limit: 4
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.string   "email",                  limit: 255,   default: "", null: false
     t.string   "encrypted_password",     limit: 255,   default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
@@ -180,7 +179,6 @@ ActiveRecord::Schema.define(version: 20150530124006) do
   end
 
   add_index "players", ["avatar_id"], name: "index_players_on_avatar_id", using: :btree
-  add_index "players", ["email"], name: "index_players_on_email", unique: true, using: :btree
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true, using: :btree
 
   create_table "question_locations", force: :cascade do |t|
